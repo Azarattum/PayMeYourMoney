@@ -1,0 +1,148 @@
+body {
+	overflow: hidden;
+	background-color: #f5f7fa;
+}
+
+.logo-left {
+	position: absolute;
+	top: 20px;
+	left: 32px;
+	font-size: 33px;
+	font-family: Arial, Helvetica, sans-serif;
+	text-align: center;
+	font-weight: bold;
+	z-index: 100;
+
+	.part-1 {
+		color: rgb(0, 58, 143);
+	}
+
+	.part-2 {
+		color: #0070ba;
+	}
+}
+
+.sign-up-form {
+	display: flex;
+	justify-content: center;
+
+	& > div {
+		width: 400px;
+		max-width: calc(100vw - 32px);
+		border: 24px solid white;
+		position: absolute;
+		height: 100vh;
+		top: 0px;
+		background-color: white;
+
+		.logo {
+			margin-top: 60px;
+			margin-bottom: 20px;
+			font-size: 33px;
+			font-family: Arial, Helvetica, sans-serif;
+			text-align: center;
+			font-weight: bold;
+			opacity: 0;
+
+			.part-1 {
+				color: rgb(0, 58, 143);
+			}
+
+			.part-2 {
+				color: #0070ba;
+			}
+		}
+
+		.header {
+			.wrapper {
+				text-align: center;
+				font-size: 20.8px;
+				line-height: 36px;
+				font-weight: 300;
+				text-transform: none;
+				font-family: Arial, Helvetica, sans-serif;
+
+				margin-block-start: 16.616px;
+				margin-block-end: 16.616px;
+
+				color: rgb(20, 20, 20);
+			}
+		}
+
+		.fields {
+			input {
+				background-color: rgba(0, 0, 0, 0);
+				border: 1px solid #9da3a6;
+				height: 48px;
+				margin-top: 15px;
+				border-radius: 5px;
+				text-indent: 16px;
+				font-size: 1em;
+				width: 100%;
+				outline: none;
+				font-family: Arial, Helvetica, sans-serif;
+
+				&:focus {
+					box-shadow: rgb(0, 112, 186) 0px 0px 1px 0px;
+					border: 1px solid rgb(0, 112, 186);
+				}
+			}
+		}
+
+		.submit {
+			margin: 12px 0;
+			text-align: center;
+
+			button {
+				border: none;
+				background-color: rgb(0, 110, 183);
+				border-radius: 24px;
+				font-size: 15px;
+				font-family: Arial, Helvetica, sans-serif;
+				width: 96px;
+				height: 48px;
+				color: #fff;
+				cursor: pointer;
+				line-height: 24px;
+				margin-bottom: 24px;
+				text-align: center;
+				text-decoration: none;
+				font-weight: 700;
+				outline: none;
+
+				&:hover {
+					background-color: rgb(0, 58, 143);
+				}
+
+				&:active {
+					text-decoration: underline;
+				}
+			}
+		}
+	}
+}
+
+.footer {
+	border-top-color: rgb(203, 210, 214);
+	border-top-style: dotted;
+	border-top-width: 2px;
+	box-sizing: border-box;
+	bottom: 32px;
+	position: absolute;
+	width: 80vw;
+	text-align: center;
+	left: 50vw;
+	transform: translateX(-50%);
+	color: rgb(108, 115, 120);
+	max-width: 400px;
+}
+
+@media (max-width: 1080px) {
+	.logo {
+		opacity: 1 !important;
+	}
+
+	.logo-left {
+		opacity: 0;
+	}
+}

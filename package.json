@@ -1,0 +1,22 @@
+{
+	"scripts": {
+		"build": "npm run build:css & npm run build:js & npm run build:html",
+		"watch": "npm-run-all --parallel watch:*",
+		"clean": "cd ./dist & del /S *.include.* & for /f \"delims=\" %d in ('dir /s /b /ad ^| sort /r') do rd \"%d\" /Q",
+		"build:html": "pug ./src -o ./dist -P --basedir ./",
+		"build:js": "tsc",
+		"build:css": "node-sass --recursive ./src/ --output ./dist/",
+		"nowatch:html": "pug ./src -o ./dist -P --basedir ./ -w",
+		"watch:js": "tsc -w",
+		"watch:css": "node-sass --watch --recursive ./src/ --output ./dist/"
+	},
+	"dependencies": {
+		"@types/body-parser": "^1.17.1",
+		"@types/express": "^4.17.1",
+		"@types/mongodb": "^3.3.5",
+		"body-parser": "^1.19.0",
+		"express": "^4.17.1",
+		"mongodb": "^3.3.2",
+		"pug": "^2.0.4"
+	}
+}
