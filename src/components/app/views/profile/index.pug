@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+mixin card(name, id, balance)
+  .card
+    .icon
+    .title=name
+    .id=id.toString().match(/.{1,4}/g).join(" ")
+    .balance #{balance ? balance : 0} &#x20BF;
+    button.transfer Transfer
+html(lang="en")
+  head
+    meta(charset="UTF-8")
+    meta(name="viewport", content="width=device-width, initial-scale=1.0")
+    meta(http-equiv="X-UA-Compatible", content="ie=edge")
+    //- ///TEMP!
+    link(rel="stylesheet", href="index.include.css")
+    //- style
+      include /index.include.css
+    title Pay Me Your Money: #{username ? username : "Stranger"}'s Profile
+  body
+    .logo-left
+      span.part-1 Pay
+      span.part-2 MeYourMoney
+    button.log-out Log Out
+    .greetings Hello, #{username ? username : "Stranger"}
+      .description Manage your accounts here and now with PayMeYourMoney.
+    .content
+      .accounts
+        .header
+          h1 Accounts
+        //- ///TEMP!
+        - var cards = [{name:"CTF Card", id: 1234567891011121, balance: 100}, {name:"Personal Card", id: 1234564291011121, balance: 0}]
+        each card in cards
+          +card(card.name,card.id, card.balance)
+        button.add-card(disabled=true) Add Card
+    .addvertisements
+    .footer ©2019 Paymeyourmoney, Inc. All rights reserved.
+
+
+      
