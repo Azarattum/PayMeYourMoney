@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+html(lang="en")
+  head
+    meta(charset="UTF-8")
+    meta(name="viewport", content="width=device-width, initial-scale=1.0")
+    meta(http-equiv="X-UA-Compatible", content="ie=edge")
+    style
+      include /index.include.css
+    title Pay Me Your Money: Confirm your transaction
+  body
+    .logo-left
+      span.part-1 Pay
+      span.part-2 MeYourMoney
+    form(action="/", method="get")
+      button.cancel(type="submit") Cancel
+    .greetings Make sure you have done everything right
+      .description Then click "Confirm" to proceed.
+    .content
+      h1 Confirmation
+      //- ///TEMP!
+      - var from = {name:"CTF Card", id: 1234567891011121}
+      - var to = {name:"My Card", id: 1244567891011121}
+      - var amount = 100
+      - var hash = "dfsUYe4YTIFUgh"
+      form(method="post")
+        .card
+          h1 Pay #{amount} &#x20BF;
+          pre
+            b From:   #{from.name}
+          span=from.id.toString().match(/.{1,4}/g).join(" ")
+          pre
+            b To:        #{to.name}
+          span=to.id.toString().match(/.{1,4}/g).join(" ")
+        input(type="hidden" name="from" value=from.id)
+        input(type="hidden" name="to" value=to.id)
+        input(type="hidden" name="amount" value=amount)
+        input(type="hidden" name="validation" value=hash)
+        button(type="submit") Confirm
+
+    .footer ©2019 Paymeyourmoney, Inc. All rights reserved.
+      | <br> We type of love using new technologies...
+
+
+      

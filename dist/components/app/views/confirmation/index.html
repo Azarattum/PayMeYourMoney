@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta http-equiv="X-UA-Compatible" content="ie=edge"/>
+    <title>Pay Me Your Money: Confirm your transaction</title>
+  </head>
+  <body>
+    <div class="logo-left"><span class="part-1">Pay</span><span class="part-2">MeYourMoney</span></div>
+    <form action="/" method="get">
+      <button class="cancel" type="submit">Cancel</button>
+    </form>
+    <div class="greetings">Make sure you have done everything right
+      <div class="description">Then click "Confirm" to proceed.</div>
+    </div>
+    <div class="content">
+      <h1>Confirmation</h1>
+      <form method="post">
+        <div class="card">
+          <h1>Pay 100 &#x20BF;</h1>
+          <pre><b>From:   CTF Card</b></pre><span>1234 5678 9101 1121</span>
+          <pre><b>To:        My Card</b></pre><span>1244 5678 9101 1121</span>
+        </div>
+        <input type="hidden" name="from" value="1234567891011121"/>
+        <input type="hidden" name="to" value="1244567891011121"/>
+        <input type="hidden" name="amount" value="100"/>
+        <input type="hidden" name="validation" value="dfsUYe4YTIFUgh"/>
+        <button type="submit">Confirm</button>
+      </form>
+    </div>
+    <div class="footer">
+      ©2019 Paymeyourmoney, Inc. All rights reserved.<br> We type of love using new technologies...</div>
+  </body>
+</html>

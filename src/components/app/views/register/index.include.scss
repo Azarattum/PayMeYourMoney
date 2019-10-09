@@ -86,6 +86,11 @@ body {
 					box-shadow: rgb(0, 112, 186) 0px 0px 1px 0px;
 					border: 1px solid rgb(0, 112, 186);
 				}
+
+				&:invalid {
+					box-shadow: #d20000 0px 0px 1px 0px;
+					border: 1px solid #d20000;
+				}
 			}
 		}
 

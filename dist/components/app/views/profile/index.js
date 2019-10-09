@@ -13,17 +13,13 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     const view_abstract_1 = __importDefault(require("../../../common/view.abstract"));
-    class ErrorView extends view_abstract_1.default {
-        constructor(code) {
-            super("status");
-            this.params["title"] = "Ooops... Something went wrong!";
-            this.params["message"] = `You got error ${code}, it means that ${ErrorCodes[+code]}.`;
+    class ProfileView extends view_abstract_1.default {
+        constructor() {
+            super("profile");
+            this.params["username"] = "Test";
+            this.params["balance"] = "100";
         }
     }
-    exports.default = ErrorView;
-    const ErrorCodes = {
-        404: "file not found",
-        403: "access forbidden"
-    };
+    exports.default = ProfileView;
 });
 //# sourceMappingURL=index.js.map

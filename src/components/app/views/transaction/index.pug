@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+html(lang="en")
+  head
+    meta(charset="UTF-8")
+    meta(name="viewport", content="width=device-width, initial-scale=1.0")
+    meta(http-equiv="X-UA-Compatible", content="ie=edge")
+    style
+      include /index.include.css
+    title Pay Me Your Money: New Transaction
+  body
+    .logo-left
+      span.part-1 Pay
+      span.part-2 MeYourMoney
+    form(action="/", method="get")
+      button.cancel(type="submit") Cancel
+    .greetings We love fast and easy transactions!
+      .description To transer money complete the form bellow.
+    .content
+      h1 Transfer
+      //- ///TEMP!
+      - var card = {name:"CTF Card", id: 1234567891011121}
+      form(method="post")
+        .card
+          h1 From
+          .icon
+          b=card.name
+          input(type="number" name="amount" placeholder="How much?")
+        .card
+          h1 To
+          .icon
+          b Reciever's Card
+          input(type="text" name="to" placeholder="Card number" pattern="[0-9]{16}")
+        input(type="hidden" name="from" value=card.id)
+        button(type="submit") Next
+
+    .footer ©2019 Paymeyourmoney, Inc. All rights reserved.
+      | <br> We type of love using new technologies...
+
+
+      

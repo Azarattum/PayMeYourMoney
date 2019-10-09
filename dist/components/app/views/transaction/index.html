@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta http-equiv="X-UA-Compatible" content="ie=edge"/>
+    <title>Pay Me Your Money: New Transaction</title>
+  </head>
+  <body>
+    <div class="logo-left"><span class="part-1">Pay</span><span class="part-2">MeYourMoney</span></div>
+    <form action="/" method="get">
+      <button class="cancel" type="submit">Cancel</button>
+    </form>
+    <div class="greetings">We love fast and easy transactions!
+      <div class="description">To transer money complete the form bellow.</div>
+    </div>
+    <div class="content">
+      <h1>Transfer</h1>
+      <form method="post">
+        <div class="card">
+          <h1>From</h1>
+          <div class="icon"></div><b>CTF Card</b>
+          <input type="number" name="amount" placeholder="How much?"/>
+        </div>
+        <div class="card">
+          <h1>To</h1>
+          <div class="icon"></div><b>Reciever's Card</b>
+          <input type="text" name="to" placeholder="Card number" pattern="[0-9]{16}"/>
+        </div>
+        <input type="hidden" name="from" value="1234567891011121"/>
+        <button type="submit">Next</button>
+      </form>
+    </div>
+    <div class="footer">
+      ©2019 Paymeyourmoney, Inc. All rights reserved.<br> We type of love using new technologies...</div>
+  </body>
+</html>
