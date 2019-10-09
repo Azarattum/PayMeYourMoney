@@ -14,9 +14,13 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     Object.defineProperty(exports, "__esModule", { value: true });
     const view_abstract_1 = __importDefault(require("../../../common/view.abstract"));
     class ConfirmationView extends view_abstract_1.default {
-        constructor() {
-            super("transaction");
-            // this.params["username"] = "Test";
+        constructor(from, to, amount) {
+            super("confirmation");
+            this.params["amount"] = amount.toString();
+            this.params["from"] = from;
+            this.params["to"] = to;
+            const hash = "test"; ///TEMP!
+            this.params["hash"] = hash;
         }
     }
     exports.default = ConfirmationView;

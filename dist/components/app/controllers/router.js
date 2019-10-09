@@ -7,7 +7,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
         if (v !== undefined) module.exports = v;
     }
     else if (typeof define === "function" && define.amd) {
-        define(["require", "exports", "express", "../views/register", "../views/error", "../models/user.class", "../views/status", "../views/profile"], factory);
+        define(["require", "exports", "express", "../views/register", "../views/error", "../models/user.class", "../views/status", "../views/profile", "../views/transaction", "../views/confirmation"], factory);
     }
 })(function (require, exports) {
     "use strict";
@@ -18,6 +18,8 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     const user_class_1 = __importDefault(require("../models/user.class"));
     const status_1 = __importDefault(require("../views/status"));
     const profile_1 = __importDefault(require("../views/profile"));
+    const transaction_1 = __importDefault(require("../views/transaction"));
+    const confirmation_1 = __importDefault(require("../views/confirmation"));
     let router = express_1.default.Router();
     router.get('/register', function (request, response) {
         const session = request.session;
@@ -78,6 +80,78 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
         const user = session.users[session.loggedId];
         let view = new profile_1.default(user);
         view.render(response);
+    });
+    router.post("/transfer", function (request, response) {
+        const session = request.session;
+        if (!session)
+            throw "Session is not initialized!";
+        initSession(session);
+        if (session.loggedId == -1) {
+            response.redirect("/register");
+            return;
+        }
+        let { from } = request.body;
+        const user = session.users[session.loggedId];
+        const card = user.cards.find(x => x.id == from);
+        if (!card) {
+            new status_1.default("You do not have this card!", "Try to transfer money from the card YOU have.")
+                .render(response);
+            return;
+        }
+        new transaction_1.default(card).render(response);
+    });
+    router.post("/confirm", function (request, response) {
+        const session = request.session;
+        if (!session)
+            throw "Session is not initialized!";
+        initSession(session);
+        if (session.loggedId == -1) {
+            response.redirect("/register");
+            return;
+        }
+        let { from, to, amount } = request.body;
+        const user = session.users[session.loggedId];
+        const card = user.cards.find(x => x.id == from);
+        if (!card) {
+            new status_1.default("You do not have this card!", "Try to transfer money from the card YOU have.")
+                .render(response);
+            return;
+        }
+        let cards = [];
+        session.users.map(x => {
+            cards.push(...x.cards);
+        });
+        const reciever = cards.find(x => x.id == to);
+        if (!reciever) {
+            new status_1.default("Unexisting card!", "Sorry, but the card you specified does not exist...")
+                .render(response);
+            return;
+        }
+        if (amount > card.balance) {
+            new status_1.default("Not enough money!", "Sorry, but you can not give more than you have...")
+                .render(response);
+            return;
+        }
+        if (card.id == reciever.id) {
+            new status_1.default("Same card!", "What is the point in transfering money to the same card?")
+                .render(response);
+            return;
+        }
+        new confirmation_1.default(card, reciever, amount).render(response);
+    });
+    router.post("/addcard", function (request, response) {
+        const session = request.session;
+        if (!session)
+            throw "Session is not initialized!";
+        initSession(session);
+        if (session.loggedId == -1) {
+            response.redirect("/register");
+            return;
+        }
+        let { name = "Untitled Card" } = request.body;
+        const user = session.users[session.loggedId];
+        user_class_1.default.addCard(user, name);
+        response.redirect("/profile");
     });
     router.get("/", function (request, response) {
         const session = request.session;

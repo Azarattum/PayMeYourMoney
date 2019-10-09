@@ -17,19 +17,17 @@ html(lang="en")
       .description To transer money complete the form bellow.
     .content
       h1 Transfer
-      //- ///TEMP!
-      - var card = {name:"CTF Card", id: 1234567891011121}
-      form(method="post")
+      form(action="/confirm" method="post")
         .card
           h1 From
           .icon
-          b=card.name
-          input(type="number" name="amount" placeholder="How much?" required="required")
+          b #{card.name} (#{card.balance} &#x20BF;)
+          input(type="number" name="amount" placeholder="How much?" required="required" max=card.balance)
         .card
           h1 To
           .icon
           b Reciever's Card
-          input(type="text" name="to" placeholder="Card number" pattern="[0-9]{16}" required="required")
+          input(type="number" name="to" placeholder="Card number" pattern="[0-9]{16}" required="required")
         input(type="hidden" name="from" value=card.id)
         button(type="submit") Next
 

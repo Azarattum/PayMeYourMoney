@@ -14,9 +14,9 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     Object.defineProperty(exports, "__esModule", { value: true });
     const view_abstract_1 = __importDefault(require("../../../common/view.abstract"));
     class TransactionView extends view_abstract_1.default {
-        constructor() {
+        constructor(card) {
             super("transaction");
-            // this.params["username"] = "Test";
+            this.params["card"] = card;
         }
     }
     exports.default = TransactionView;

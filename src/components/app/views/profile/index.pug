@@ -5,7 +5,9 @@ mixin card(name, id, balance)
     .title=name
     .id=id.toString().match(/.{1,4}/g).join(" ")
     .balance #{balance ? balance : 0} &#x20BF;
-    button.transfer Transfer
+    form(action="/transfer", method="post")
+      input(type="hidden" name="from" value=id)
+      button.transfer Transfer
 html(lang="en")
   head
     meta(charset="UTF-8")
@@ -28,7 +30,9 @@ html(lang="en")
           h1 Accounts
         each card in cards
           +card(card.name, card.id, card.balance)
-        button.add-card(disabled=true) Add Card
+        form(action="/addcard", method="post")
+          input(type="hidden", name="name", value="Personal Card")
+          button.add-card(disabled=true) Add Card
     .advertisements
       span.label Advertisements
       .advert
