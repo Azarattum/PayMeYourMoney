@@ -7,35 +7,29 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
         if (v !== undefined) module.exports = v;
     }
     else if (typeof define === "function" && define.amd) {
-        define(["require", "exports", "express", "body-parser", "./components/app/views/error", "./components/app/views/register"], factory);
+        define(["require", "exports", "express", "body-parser", "express-session", "dotenv", "./components/app/controllers/router"], factory);
     }
 })(function (require, exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     const express_1 = __importDefault(require("express"));
     const body_parser_1 = __importDefault(require("body-parser"));
-    const error_1 = __importDefault(require("./components/app/views/error"));
-    const register_1 = __importDefault(require("./components/app/views/register"));
+    const express_session_1 = __importDefault(require("express-session"));
+    const dotenv_1 = __importDefault(require("dotenv"));
+    const router_1 = __importDefault(require("./components/app/controllers/router"));
+    dotenv_1.default.config();
     let app = express_1.default();
-    let router = express_1.default.Router();
+    app.locals.basedir = __dirname;
+    app.set("views", "./src/components/app/views");
+    app.set("view engine", "pug");
     app.use(body_parser_1.default.json());
     app.use(body_parser_1.default.urlencoded({
         extended: true
     }));
-    app.locals.basedir = __dirname;
-    app.set("views", "./src/components/app/views");
-    app.set("view engine", "pug");
-    router.get('/register', function (request, response) {
-        let view = new register_1.default();
-        view.render(response);
-    });
-    router.get("/", function (request, response) {
-        response.redirect("/register");
-    });
-    router.get("*", function (request, response) {
-        new error_1.default(404).render(response);
-    });
-    app.use(router);
+    app.use(express_session_1.default({
+        secret: process.env.SESSION_SECRET + ""
+    }));
+    app.use(router_1.default);
     app.listen(80);
 });
 //# sourceMappingURL=index.js.map

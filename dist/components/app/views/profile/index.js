@@ -14,10 +14,10 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     Object.defineProperty(exports, "__esModule", { value: true });
     const view_abstract_1 = __importDefault(require("../../../common/view.abstract"));
     class ProfileView extends view_abstract_1.default {
-        constructor() {
+        constructor(user) {
             super("profile");
-            this.params["username"] = "Test";
-            this.params["balance"] = "100";
+            this.params["username"] = user.username;
+            this.params["cards"] = user.cards;
         }
     }
     exports.default = ProfileView;

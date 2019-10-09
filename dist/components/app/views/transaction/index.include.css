@@ -132,7 +132,7 @@ input {
   input:focus {
     box-shadow: #0070ba 0px 0px 1px 0px;
     border: 1px solid #0070ba; }
-  input:invalid {
+  input:invalid:not(:placeholder-shown) {
     box-shadow: #d20000 0px 0px 1px 0px;
     border: 1px solid #d20000; }
 

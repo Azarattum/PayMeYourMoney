@@ -13,12 +13,13 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     const view_abstract_1 = __importDefault(require("../../../common/view.abstract"));
-    class ConfirmationView extends view_abstract_1.default {
-        constructor() {
-            super("transaction");
-            // this.params["username"] = "Test";
+    class StatusView extends view_abstract_1.default {
+        constructor(title, message) {
+            super("status");
+            this.params["title"] = title;
+            this.params["message"] = message;
         }
     }
-    exports.default = ConfirmationView;
+    exports.default = StatusView;
 });
 //# sourceMappingURL=index.js.map

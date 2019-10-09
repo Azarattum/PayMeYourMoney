@@ -1,9 +1,10 @@
 import View from "../../../common/view.abstract";
+import User from "../../models/user.class";
 
 export default class ProfileView extends View {
-    constructor() {
+    constructor(user: User) {
         super("profile");
-        this.params["username"] = "Test";
-        this.params["balance"] = "100";
+        this.params["username"] = user.username;
+        (<unknown>this.params["cards"]) = user.cards;
     }
 }

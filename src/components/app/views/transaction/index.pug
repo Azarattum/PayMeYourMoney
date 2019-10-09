@@ -24,12 +24,12 @@ html(lang="en")
           h1 From
           .icon
           b=card.name
-          input(type="number" name="amount" placeholder="How much?")
+          input(type="number" name="amount" placeholder="How much?" required="required")
         .card
           h1 To
           .icon
           b Reciever's Card
-          input(type="text" name="to" placeholder="Card number" pattern="[0-9]{16}")
+          input(type="text" name="to" placeholder="Card number" pattern="[0-9]{16}" required="required")
         input(type="hidden" name="from" value=card.id)
         button(type="submit") Next
 
