@@ -23,8 +23,10 @@ router.get("/store", function (request, response) {
     if (session.loggedId != -1) {
         const user = session.users[session.loggedId];
         view = new StoreView(user);
+        console.log("GET /store as " + user.username);
     } else {
         view = new StoreView();
+        console.log("GET /store (nouser)");
     }
 
     view.render(response);
@@ -45,19 +47,23 @@ router.post("/buy", function (request, response) {
 
     const user = session.users[session.loggedId] as User;
     const card = user.cards.find(x => x.id == +from);
+    console.log(`POST /buy as ${user.username} [from: ${from}]`);
 
     if (!card) {
+        console.log(`\t${user.username} ← Wrong card`);
         new StatusView("You do not have this card!", "Try to transfer money from the card YOU have.")
             .render(response);
         return;
     }
 
     if (card.balance >= cost) {
+        console.log(`\t${user.username} ← FLAG`);
         card.balance -= cost;
         card.transactions++;
         new StatusView("You did it!", `Enjoy your flag: ${process.env.FLAG}.`)
             .render(response);
     } else {
+        console.log(`\t${user.username} ← Not enough money`);
         new StatusView("WE NEED MORE GOLD!", "Not enough money to buy the flag.")
             .render(response);
     }
@@ -72,6 +78,7 @@ router.get("/register", function (request, response) {
         response.redirect("/profile");
     }
 
+    console.log(`GET /register`);
     let view = new RegisterView();
     view.render(response);
 });
@@ -84,8 +91,11 @@ router.post("/register", function (request, response) {
     let users: User[] = session.users;
     let { name, password } = request.body;
 
+    console.log(`POST /register [name: ${name}, pass: ${password}]`);
+
     if (!(<string>name).match(/[-_a-zA-Z0-9]+/) ||
         !(<string>password).match(/[-_a-zA-Z0-9]+/)) {
+        console.log(`\t${name} ← Wrong format`);
         new StatusView("Wrong format!", "Try to follow the rules instead of hacking website.")
             .render(response);
         return;
@@ -94,14 +104,17 @@ router.post("/register", function (request, response) {
     let user = users.find(x => x.username == name) as User;
     if (user) {
         if (!User.checkPassword(user, password)) {
+            console.log(`\t${user.username} ← Invalid password`);
             new StatusView("Invalid password! Or taken name!",
                 "Enter a valid password or a different name if you try to register.")
                 .render(response);
             return;
         }
+        console.log(`\t${user.username} ← Logged in`);
     }
     else {
         if (users.length > 16) {
+            console.log(`\t${name} ← Too many registrations`);
             new StatusView("Registration refused!",
                 "You have too many accounts per one person.")
                 .render(response);
@@ -120,6 +133,7 @@ router.post("/logout", function (request, response) {
     if (!session) throw "Session is not initialized!";
     initSession(session);
 
+    console.log(`POST /logout as ${session.users[session.loggedId].username}`);
     session.loggedId = -1;
 
     response.redirect("/register");
@@ -136,6 +150,7 @@ router.get("/profile", function (request, response) {
     }
 
     const user = session.users[session.loggedId];
+    console.log(`GET /profile as ${user.username}`);
     let view = new ProfileView(user);
     view.render(response);
 });
@@ -155,7 +170,10 @@ router.post("/transfer", function (request, response) {
     const user = session.users[session.loggedId] as User;
     const card = user.cards.find(x => x.id == from);
 
+    console.log(`POST /transfer as ${user.username} [from: ${from}]`);
+
     if (!card) {
+        console.log(`\t${user.username} ← Wrong card`);
         new StatusView("You do not have this card!", "Try to transfer money from the card YOU have.")
             .render(response);
         return;
@@ -178,8 +196,10 @@ router.post("/confirm", function (request, response) {
 
     const user = session.users[session.loggedId] as User;
     const card = user.cards.find(x => x.id == from);
+    console.log(`POST /confirm as ${user.username} [from: ${from}, to: ${to}, amount: ${amount}]`);
 
     if (!card) {
+        console.log(`\t${user.username} ← Wrong card`);
         new StatusView("You do not have this card!", "Try to transfer money from the card YOU have.")
             .render(response);
         return;
@@ -192,24 +212,28 @@ router.post("/confirm", function (request, response) {
     const reciever = cards.find(x => x.id == to);
 
     if (!reciever) {
+        console.log(`\t${user.username} ← Unexisting card`);
         new StatusView("Unexisting card!", "Sorry, but the card you specified does not exist...")
             .render(response);
         return;
     }
 
     if (amount > card.balance) {
+        console.log(`\t${user.username} ← Not enough money`);
         new StatusView("Not enough money!", "Sorry, but you can not give more than you have...")
             .render(response);
         return;
     }
 
     if (amount <= 0) {
+        console.log(`\t${user.username} ← Negative amount`);
         new StatusView("It does not make any sense!", "You can not pay nothing or less!")
             .render(response);
         return;
     }
 
     if (card.id == reciever.id) {
+        console.log(`\t${user.username} ← Same card`);
         new StatusView("Same card!", "What is the point in transfering money to the same card?")
             .render(response);
         return;
@@ -231,6 +255,7 @@ router.post("/addcard", function (request, response) {
     let { name = "Untitled Card" } = request.body;
 
     const user = session.users[session.loggedId] as User;
+    console.log(`POST /addcard as ${user.username} [name: ${name}]`);
     User.addCard(user, name);
 
     response.redirect("/profile");
@@ -255,8 +280,10 @@ router.post("/pay", function (request, response) {
 
     const user = session.users[session.loggedId] as User;
     const card = user.cards.find(x => x.id == +from);
+    console.log(`POST /pay as ${user.username} [from: ${from}, to: ${to}, amount: ${amount}, validation:${validation}]`);
 
     if (!card) {
+        console.log(`\t${user.username} ← Wrong card`);
         new StatusView("You do not have this card!", "Try to transfer money from the card YOU have.")
             .render(response);
         return;
@@ -278,9 +305,11 @@ router.post("/pay", function (request, response) {
         card.balance -= +amount;
         card.transactions++;
         reciever.balance += +amount;
+        console.log(`\t${user.username} ← ${amount} transfered`);
         new StatusView("Success!", `You successfuly transfered ${amount}\u20BF.`)
             .render(response);
     } else {
+        console.log(`\t${user.username} ← Validation fail`);
         new StatusView("Invalid operation!", "Detected an attempt to compromise transaction.")
             .render(response);
     }
@@ -305,17 +334,25 @@ router.get("*", function (request, response) {
             const path = Path.resolve(Path.join(__dirname, "../../..", request.url));
 
             if (request.url.indexOf("..") != -1) {
+                console.log(`GET ${request.url} ← 403 (contains ..)`);
                 new ErrorView(403).render(response);
             }
 
             if (FileSystem.existsSync(path)) {
+                if (Path.extname(request.url) != ".otf") {
+                    console.log(`GET ${request.url} ← [file: ${path}]`);
+                }
                 const data = FileSystem.readFileSync(path);
                 response.write(data);
                 response.end();
             } else {
+                if (Path.extname(request.url) != ".ico") {
+                    console.log(`GET ${request.url} ← 404 (not found)`);
+                }
                 new ErrorView(404).render(response);
             }
         } else {
+            console.log(`GET ${request.url} ← 403 (banned extention)`);
             new ErrorView(403).render(response);
         }
     } else {
