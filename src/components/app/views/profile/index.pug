@@ -4,7 +4,7 @@ mixin card(name, id, balance)
     .icon
     .title=name
     .id=id.toString().match(/.{1,4}/g).join(" ")
-    .balance #{balance ? balance : 0} &#x20BF;
+    .balance #{balance ? balance : 0}&#x20BF;
     form(action="/transfer", method="post")
       input(type="hidden" name="from" value=id)
       button.transfer Transfer
@@ -46,7 +46,7 @@ html(lang="en")
         a(href="https://lmgtfy.com/?q=how+to+google&iie=1" target="blank")
           span &#129300; To solve this task you just need to...
       .advert
-        a(href="")
+        a(href="/store")
           span &#9971; Buy cheap flags.
     .footer ©2019 Paymeyourmoney, Inc. All rights reserved.
       | <br> We type of love using new technologies...

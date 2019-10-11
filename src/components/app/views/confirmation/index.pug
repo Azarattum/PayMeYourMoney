@@ -17,9 +17,9 @@ html(lang="en")
       .description Then click "Confirm" to proceed.
     .content
       h1 Confirmation
-      form(method="post")
+      form(action="/pay" method="post")
         .card
-          h1 Pay #{amount} &#x20BF;
+          h1 Pay #{amount}&#x20BF;
           pre
             b From:   #{from.name}
           span=from.id.toString().match(/.{1,4}/g).join(" ")

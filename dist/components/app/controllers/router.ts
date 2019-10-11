@@ -300,7 +300,7 @@ router.get("/", function (request, response) {
 
 router.get("*", function (request, response) {
     if (Path.extname(request.url)) {
-        const bannedExtetions = [".html", ".js", ".css", ".map"];
+        const bannedExtetions = [".html", ".js", ".css"];
         if (!bannedExtetions.some(x => request.url.indexOf(x) != -1)) {
             const path = Path.resolve(Path.join(__dirname, "../../..", request.url));
 

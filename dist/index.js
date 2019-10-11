@@ -27,7 +27,9 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
         extended: true
     }));
     app.use(express_session_1.default({
-        secret: process.env.SESSION_SECRET + ""
+        secret: process.env.SESSION_SECRET + "",
+        resave: false,
+        saveUninitialized: false
     }));
     app.use(router_1.default);
     app.listen(80);

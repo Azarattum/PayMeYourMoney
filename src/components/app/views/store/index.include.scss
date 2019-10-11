@@ -1,8 +1,3 @@
-@font-face {
-	font-family: ITC;
-	src: url("assets/ITC.otf");
-}
-
 body {
 	background-color: #f5f7fa;
 	font-family: Arial, Helvetica, sans-serif;
@@ -14,17 +9,17 @@ body {
 	top: 20px;
 	left: 32px;
 	font-size: 33px;
-	font-family: ITC;
+	font-family: Arial, Helvetica, sans-serif;
 	text-align: center;
 	font-weight: bold;
 	z-index: 100;
 
 	.part-1 {
-		color: rgb(0, 58, 143);
+		color: #f03a17;
 	}
 
 	.part-2 {
-		color: #0070ba;
+		color: #13a10e;
 	}
 }
 
@@ -33,8 +28,8 @@ body {
 	top: 20px;
 	right: 32px;
 	border: none;
-	color: rgb(0, 110, 183);
-	border: 2px solid rgb(0, 110, 183);
+	color: #f03a17;
+	border: 2px solid #f03a17;
 	border-radius: 24px;
 	font-size: 15px;
 	font-family: Arial, Helvetica, sans-serif;
@@ -50,7 +45,7 @@ body {
 	outline: none;
 
 	&:hover {
-		background-color: rgb(0, 110, 183);
+		background-color: #f03a17;
 		color: #f5f7fa;
 	}
 
@@ -63,7 +58,7 @@ body {
 	position: relative;
 	top: 72px;
 
-	background-color: #009cde;
+	background-color: #f03a17;
 	color: #fdf4f6;
 	position: relative;
 	left: -4px;
@@ -84,7 +79,8 @@ body {
 .content {
 	position: relative;
 	top: 96px;
-	margin-left: 5vw;
+	left: 50%;
+	transform: translateX(-50%);
 	min-height: calc(100vh - 96px - 96px);
 
 	width: max-content;
@@ -94,7 +90,6 @@ body {
 		box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.1);
 		padding: 32px;
 		border-radius: 4px;
-		margin-left: 5vw;
 
 		.header {
 			font-size: 20px;
@@ -154,7 +149,7 @@ body {
 				bottom: -12px;
 				right: 8px;
 				border: none;
-				background-color: rgb(0, 110, 183);
+				background-color: #f03a17;
 				border-radius: 24px;
 				font-size: 15px;
 				font-family: Arial, Helvetica, sans-serif;
@@ -170,7 +165,7 @@ body {
 				outline: none;
 
 				&:hover {
-					background-color: rgb(0, 58, 143);
+					background-color: #c92c0c;
 				}
 
 				&:active {
@@ -209,104 +204,6 @@ body {
 				text-decoration: underline;
 			}
 		}
-	}
-}
-
-.advertisements {
-	position: fixed;
-	bottom: -2px;
-	right: -2px;
-	width: 200px;
-	height: max-content;
-	border: 2px dotted rgba(0, 0, 0, 0.4);
-	opacity: 0.7;
-	z-index: 1000;
-
-	.label {
-		position: relative;
-		top: -6px;
-		font-size: 8px;
-		opacity: 0.7;
-	}
-
-	.advert {
-		position: relative;
-
-		box-shadow: 0px -4px 6px rgba(0, 0, 0, 0.4);
-		margin-bottom: 8px;
-		border-radius: 5px;
-		background-color: rgba(0, 0, 0, 0.2);
-		padding: 4px;
-		height: 100%;
-		cursor: pointer;
-		font-family: "Comic Sans MS", "Comic Sans", cursive;
-
-		&:hover {
-			background-color: rgba(0, 0, 0, 0.4);
-		}
-	}
-
-	&:hover {
-		opacity: 1;
-	}
-}
-
-button:disabled {
-	filter: saturate(0);
-	cursor: not-allowed !important;
-	opacity: 0.7;
-}
-button:disabled:hover {
-	background-color: rgb(0, 110, 183) !important;
-}
-
-a {
-	text-decoration: none;
-	color: black;
-}
-
-.blinking {
-	animation: blinkingText 0.8s infinite;
-}
-@keyframes blinkingText {
-	0% {
-		color: #000;
-	}
-	49% {
-		color: #000;
-	}
-	50% {
-		color: red;
-	}
-	99% {
-		color: red;
-	}
-	100% {
-		color: #000;
-	}
-}
-
-.shaking {
-	animation: shakingText 0.8s infinite alternate;
-}
-@keyframes shakingText {
-	0% {
-		transform: skewX(-15deg);
-	}
-	5% {
-		transform: skewX(15deg);
-	}
-	10% {
-		transform: skewX(-15deg);
-	}
-	15% {
-		transform: skewX(15deg);
-	}
-	20% {
-		transform: skewX(0deg);
-	}
-	100% {
-		transform: skewX(0deg);
 	}
 }
 

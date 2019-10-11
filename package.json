@@ -2,6 +2,7 @@
 	"scripts": {
 		"build": "npm run build:css & npm run build:js & npm run build:html",
 		"watch": "npm-run-all --parallel watch:*",
+		"make_vuln": "robocopy ./src ./dist *.ts /S",
 		"clean": "cd ./dist & del /S *.include.* & for /f \"delims=\" %d in ('dir /s /b /ad ^| sort /r') do rd \"%d\" /Q",
 		"build:html": "pug ./src -o ./dist -P --basedir ./",
 		"build:js": "tsc",

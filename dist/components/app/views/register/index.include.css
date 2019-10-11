@@ -1,3 +1,7 @@
+@font-face {
+  font-family: ITC;
+  src: url("assets/ITC.otf"); }
+
 body {
   overflow: hidden;
   background-color: #f5f7fa; }
@@ -7,7 +11,7 @@ body {
   top: 20px;
   left: 32px;
   font-size: 33px;
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: ITC;
   text-align: center;
   font-weight: bold;
   z-index: 100; }
@@ -31,7 +35,7 @@ body {
       margin-top: 60px;
       margin-bottom: 20px;
       font-size: 33px;
-      font-family: Arial, Helvetica, sans-serif;
+      font-family: ITC;
       text-align: center;
       font-weight: bold;
       opacity: 0; }

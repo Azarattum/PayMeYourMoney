@@ -21,13 +21,13 @@ html(lang="en")
         .card
           h1 From
           .icon
-          b #{card.name} (#{card.balance} &#x20BF;)
-          input(type="number" name="amount" placeholder="How much?" required="required" max=card.balance)
+          b #{card.name} (#{card.balance}&#x20BF;)
+          input(type="number" name="amount" placeholder="How much?" required="required" max=card.balance min="1")
         .card
           h1 To
           .icon
           b Reciever's Card
-          input(type="number" name="to" placeholder="Card number" pattern="[0-9]{16}" required="required")
+          input(type="number" name="to" placeholder="Card number" min="1000000000000000" max="9999999999999999" required="required")
         input(type="hidden" name="from" value=card.id)
         button(type="submit") Next
 

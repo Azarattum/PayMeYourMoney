@@ -1,3 +1,7 @@
+@font-face {
+  font-family: ITC;
+  src: url("assets/ITC.otf"); }
+
 body {
   background-color: #f5f7fa;
   font-family: Arial, Helvetica, sans-serif;
@@ -8,7 +12,7 @@ body {
   top: 20px;
   left: 32px;
   font-size: 33px;
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: ITC;
   text-align: center;
   font-weight: bold;
   z-index: 100; }
@@ -63,7 +67,7 @@ body {
 .content {
   position: relative;
   top: 96px;
-  min-height: calc(100vh - 96px - 96px - 145px - 24px);
+  min-height: calc(100vh - 96px - 96px - 145px - 16px);
   width: min-content; }
 
 .footer {

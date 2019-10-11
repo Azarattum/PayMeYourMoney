@@ -11,6 +11,7 @@
     Object.defineProperty(exports, "__esModule", { value: true });
     class Card {
         constructor(owner, name, balance = 0) {
+            this.transactions = 0;
             this.owner = owner;
             this.id = +Math.random().toFixed(16).toString().substring(2, 18);
             this.name = name;

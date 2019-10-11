@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+mixin card(name, id, balance)
+  .card
+    .icon
+    .title=name
+    .id=id.toString().match(/.{1,4}/g).join(" ")
+    .balance #{balance ? balance : 0}&#x20BF;
+    form(action="/buy", method="post")
+      input(type="hidden" name="from" value=id)
+      button.transfer Choose
+html(lang="en")
+  head
+    meta(charset="UTF-8")
+    meta(name="viewport", content="width=device-width, initial-scale=1.0")
+    meta(http-equiv="X-UA-Compatible", content="ie=edge")
+    style
+      include /index.include.css
+    title Flags Store: Buy cheap flags!
+  body
+    .logo-left
+      span.part-1 &#9971;Flags
+      span.part-2 Store
+    form(action="/", method="get")
+      button.log-out(type="submit") Back
+    .greetings Welcome to FlagsStore.
+      .description The cheapest flags ever! Only 9,999,999&#x20BF; per flag!
+    .content
+      if (cards)
+        .accounts
+          .header
+            h1 Choose Payment Method
+          each card in cards
+            +card(card.name, card.id, card.balance)
+      else
+        h1 Log into your payment system to buy flags.
+    .footer ©2019 Flagsstore, Inc. All rights reserved.
+      | <br> Delivering flags for you since... Well... Now!
