@@ -13,7 +13,11 @@
         constructor(owner, name, balance = 0) {
             this.transactions = 0;
             this.owner = owner;
-            this.id = +Math.random().toFixed(16).toString().substring(2, 18);
+            let id;
+            do {
+                id = +Math.random().toFixed(16).toString().substring(2, 18);
+            } while (id.toString().length != 16);
+            this.id = id;
             this.name = name;
             this.balance = balance;
         }

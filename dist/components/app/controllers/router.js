@@ -199,13 +199,13 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
                 .render(response);
             return;
         }
-        if (amount > card.balance) {
+        if (+amount > card.balance) {
             console.log(`\t${user.username} ← Not enough money`);
             new status_1.default("Not enough money!", "Sorry, but you can not give more than you have...")
                 .render(response);
             return;
         }
-        if (amount <= 0) {
+        if (!Number.isFinite(+amount) || +amount <= 0) {
             console.log(`\t${user.username} ← Negative amount`);
             new status_1.default("It does not make any sense!", "You can not pay nothing or less!")
                 .render(response);
@@ -263,8 +263,10 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
             amount + "7h15_15_7h3_50l71357_50l7_y0u_h4v3_3v3r_533n!").digest("hex");
         if (reciever && validation == hash) {
             card.balance -= +amount;
+            card.balance = +card.balance.toPrecision(15);
             card.transactions++;
             reciever.balance += +amount;
+            reciever.balance = +reciever.balance.toPrecision(15);
             console.log(`\t${user.username} ← ${amount} transfered`);
             new status_1.default("Success!", `You successfuly transfered ${amount}\u20BF.`)
                 .render(response);

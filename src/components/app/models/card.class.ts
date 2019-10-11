@@ -7,7 +7,11 @@ export default class Card {
 
     constructor(owner: string, name: string, balance: number = 0) {
         this.owner = owner;
-        this.id = +Math.random().toFixed(16).toString().substring(2, 18);
+        let id: number;
+        do {
+            id = +Math.random().toFixed(16).toString().substring(2, 18);
+        } while (id.toString().length != 16)
+        this.id = id;
         this.name = name;
         this.balance = balance;
     }
