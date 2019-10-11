@@ -32,6 +32,6 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
         saveUninitialized: false
     }));
     app.use(router_1.default);
-    app.listen(80);
+    app.listen(2012);
 });
 //# sourceMappingURL=index.js.map
