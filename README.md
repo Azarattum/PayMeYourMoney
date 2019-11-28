@@ -19,13 +19,17 @@ docker run -p 2012:2012 -d <your username>/pay-me-your-money
 
 **Option 2**: Host directly using Node
 1) Enter **PayMeYourMoney** cloned directory.
-2) Run:
+2) Install dependencies:
+```bash
+npm install
 ```
+3) Run:
+```bash
 node ./dist/index.js
 ```
 Note, that you should **not** run it directly from the *dist* folder. 
 
-3) Connect via your browser to http://127.0.0.1:2012/
+4) Connect via your browser to http://127.0.0.1:2012/
 
 ## Solution:
 1) There is a hint the website's footer:
