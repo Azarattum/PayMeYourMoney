@@ -5,6 +5,28 @@ PayPal'ish web CTF challenge.
 
 A successful deal is the one where your money always reaches its destination. That is why you should to use our payment system! We **type of** love using new technologies there. For sure, you'll love it!
 
+## Setup:
+**Option 1**: Using Docker
+1) Build the docker image:
+```bash
+docker build -t <your username>/pay-me-your-money .
+```
+2) Run the container:
+```bash
+docker run -p 2012:2012 -d <your username>/pay-me-your-money
+```
+3) Connect via your browser to http://127.0.0.1:2012/
+
+**Option 2**: Host directly using Node
+1) Enter **PayMeYourMoney** cloned directory.
+2) Run:
+```
+node ./dist/index.js
+```
+Note, that you should **not** run it directly from the *dist* folder. 
+
+3) Connect via your browser to http://127.0.0.1:2012/
+
 ## Solution:
 1) There is a hint the website's footer:
 ```
@@ -64,7 +86,7 @@ You can even change the card's name if you want to.
 </form>
 ```
 
-Here we change the amount and validation using the hash function. Let it be 9,999,999.
+Here we change the amount and the validation using the hash function. Let it be 9,999,999.
 ```JavaScript
 const c = require("crypto");
 const hasher = c.createHash("sha256");
